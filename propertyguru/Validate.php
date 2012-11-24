@@ -32,4 +32,24 @@ Class Validate
 		else 
 			return true;
 	}
+	
+	//Null Validation
+	public function nullValidation($var)
+	{
+		$this->setValidateVariable($var);
+		if($this->getValidateVariable() == null)
+			return false;
+		else 
+			return true;
+	}
+	
+	//Below one Validation
+	public function belowOneValidation($var)
+	{
+		$this->setValidateVariable($var);
+		if($this->getValidateVariable() < 1)
+			return false;
+		else 
+			return true;
+	}
 }

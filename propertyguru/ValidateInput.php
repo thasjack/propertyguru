@@ -7,7 +7,7 @@ Class ValidateInput extends Validate
 	//$input String
 	protected $inputString = '';
 	//$input Array
-	protected $inputArray = array();
+	protected $inputArray = array(0 => null, 1 => null);
 	
 	public function __construct($input = '')
 	{
@@ -34,7 +34,7 @@ Class ValidateInput extends Validate
 	
 	public function getInputArray($index = null)
 	{
-		if($index == null)
+		if($index === null)
 			return $this->inputArray;
 		else if(isset($this->inputArray[$index]))
 			return trim($this->inputArray[$index]);
@@ -49,11 +49,11 @@ Class ValidateInput extends Validate
 	
 	public function validation()
 	{
-		if($this->nullValidation($this->getInputArray(0)) || $this->nullValidation($this->getInputArray(1)))
+		if(!$this->nullValidation($this->getInputArray(0)) || !$this->nullValidation($this->getInputArray(1)))
 			exit("Input are not valid");
-		if($this->integerValidation($this->getInputArray(0)) || $this->integerValidation($this->getInputArray(1)))
+		if(!$this->integerValidation($this->getInputArray(0)) || !$this->integerValidation($this->getInputArray(1)))
 			exit("Only Integers are valid");
-		if($this->belowOneValidation($this->getInputArray(0)) || $this->belowOneValidation($this->getInputArray(0)))
+		if(!$this->belowOneValidation($this->getInputArray(0)) || !$this->belowOneValidation($this->getInputArray(0)))
 			exit("Only Positive Integers are valid");
 		$this->incrementalValidation();
 	}
